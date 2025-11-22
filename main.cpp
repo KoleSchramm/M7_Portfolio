@@ -1,16 +1,30 @@
 #include <iostream>
+#include <thread>
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+using namespace std;
+
+int counter = 0;
+
+void countUp() {
+    for (int i = 0; i < 20; i++) {
+        counter++;
+    };
+}
+
+void countDown() {
+    for (int i = 0; i < 20; i++) {
+        counter--;
+    };
+}
+
 int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    thread th1(countUp);
+    th1.join();
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
-    }
+    cout << counter << endl;
 
-    return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
+    thread th2(countDown);
+    th2.join();
+
+    cout << counter << endl;
 }
