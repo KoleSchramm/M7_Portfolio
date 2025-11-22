@@ -21,10 +21,10 @@ int main() {
     thread th1(countUp);
     th1.join();
 
-    cout << counter << endl;
+    cout << "First thread: " << counter << endl;
 
     thread th2(countDown);
     th2.join();
 
-    cout << counter << endl;
+    cout << "Second thread: " << counter << endl;
 }
